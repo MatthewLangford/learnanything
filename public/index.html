@@ -45,7 +45,7 @@
                         </form>
                     </li>
                     <a style="padding-top: 3px" id="login2" ng-click="youtubeData = [];isNavCollapsed = true" href="/auth"  ng-show="!user || user === 'NOT LOGGED IN'"><span class="glyphicon glyphicon-log-in"></span>Login</a>
-                    <a id="login2" ng-show="user && user !== 'NOT LOGGED IN'" ui-sref="acct" ng-click="youtubeData = [];isNavCollapsed = true; goToTop()"> {{user.username}}</a>
+                    <a id="login2" ng-show="user && user !== 'NOT LOGGED IN'" ui-sref="acct" ng-click="youtubeData = [];isNavCollapsed = true; goToTop()"> {{user.user_name}}</a>
                 </ul>
             </ul>
             </div>

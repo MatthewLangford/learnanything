@@ -6,20 +6,20 @@ angular.module('learnApp').service('mainService', function ($http) {
             return $http.get('/api/getVideos/' + search);
         }
     };
-    this.changeRating = (vid, type, str, info, userid)=>{
-        return $http.post('/api/changeRating/',{vid: vid, str: str, type: type, snippet:info, userid: userid})
+    this.changeRating = (vid, str, user_id)=>{
+        return $http.post('/api/changeRating/',{vid: vid, str: str, user_id: user_id})
     };
     this.getDesc = (id)=>{
         return $http.get('/api/getDesc/' + id);
     };
-    this.addToFavs = (id, vidId, type, info, rating, dis) =>{
-        $http.post('/api/addToFavs',{userid: id, videoid: vidId, type: type, info:info, rating: rating, dis: dis})
+    this.addToFavs = (id, vid) =>{
+        $http.post('/api/addToFavs',{user_id: id, vid: vid})
     };
     this.removeFromFavs = (id, vidId)=>{
         return $http.delete('/api/removeFromFavs/' + id + '/' + vidId)
     };
-    this.getUserVids = (userid)=>{
-        return $http.get('/api/getUserVids/' + userid);
+    this.getUserVids = (user_id)=>{
+        return $http.get('/api/getUserVids/' + user_id);
     };
     this.getRated = ()=>{
         return $http.get('/api/rated');

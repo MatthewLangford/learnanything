@@ -17,8 +17,10 @@ angular.module('learnApp').controller('homeCtrl', function ($scope,mainService, 
     };
     //get the description data from the back
     $scope.getDesc =(vid) =>{
-        mainService.getDesc(vid.videoid).then(response =>{
-            vid.desc = response.data.desc;
+        mainService.getDesc(vid.video_id).then(response =>{
+            vid.snippet.desc = response.data.snippet.description;
+            vid.snippet.tags = response.data.snippet.tags;
+            vid.snippet.views = response.data.views;
         })
     };
     // infinite scrolling function that fires when the user gets close to the bottom of the screen
@@ -37,33 +39,35 @@ angular.module('learnApp').controller('homeCtrl', function ($scope,mainService, 
         })
     };
     //change rating function
-    $scope.changeRating = (vid, type, index, str, info, userid) =>{
-                mainService.changeRating(vid, type, str, info, userid).then(response => {
+    $scope.changeRating = (vid, type, index, str,  user_id) =>{
+        vid.type = type;
+                mainService.changeRating(vid, str, user_id).then(response => {
+                    console.log(response)
                     if (str === 'plus') {
                         switch(response.data){
                             case 'added_l':
-                                $scope.youtubeFiltered[index].rating++;
+                                $scope.youtubeData[index].rating++;
                                 break;
                             case 'alreadyLiked':
                                 alert('you already liked that video');
                                 break;
                             case 'disToLiked':
-                                $scope.youtubeFiltered[index].rating++;
-                                $scope.youtubeFiltered[index].dis--;
+                                $scope.youtubeData[index].rating++;
+                                $scope.youtubeData[index].dis--;
                                 break;
                         }
                     }
                     if (str === 'dis') {
                         switch(response.data){
                             case 'added_d':
-                                $scope.youtubeFiltered[index].dis++;
+                                $scope.youtubeData[index].dis++;
                                 break;
                             case 'alreadyDisliked':
                                 alert('you already disliked that video');
                                 break;
                             case 'likeToDis':
-                                $scope.youtubeFiltered[index].rating--;
-                                $scope.youtubeFiltered[index].dis++;
+                                $scope.youtubeData[index].rating--;
+                                $scope.youtubeData[index].dis++;
                                 break;
                         }
                     }
@@ -84,8 +88,9 @@ angular.module('learnApp').controller('homeCtrl', function ($scope,mainService, 
 
     };
 
-    $scope.addToFavs = (userid, videoid, type, info, rating, dis) => {
-        mainService.addToFavs(userid, videoid, type, info, rating, dis)
+    $scope.addToFavs = (userid, vid, type) => {
+        vid.type = type;
+        mainService.addToFavs(userid, vid)
     };
     $scope.goToTopFast = ()=> {
         window.scrollTo(0,0)
@@ -115,8 +120,8 @@ angular.module('learnApp').controller('homeCtrl', function ($scope,mainService, 
         mainService.getUser().then(user => {
             if (user) {
                 $scope.user = {
-                    userid: user.userid,
-                    username: user.username
+                    user_id: user.user_id,
+                    user_name: user.user_name
                 }
             } else {
                 $scope.user = 'NOT LOGGED IN';

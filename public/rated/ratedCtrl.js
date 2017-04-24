@@ -8,8 +8,8 @@ angular.module('learnApp').controller('ratedCtrl', function ($scope, mainService
         mainService.getUser().then(user => {
             if(user){
                 $scope.user = {
-                    userid: user.userid,
-                    username: user.username
+                    user_id: user.user_id,
+                    user_name: user.user_name
                 };
             }else {
                 $scope.user = 'NOT LOGGED IN';
@@ -17,14 +17,13 @@ angular.module('learnApp').controller('ratedCtrl', function ($scope, mainService
         });
     };
 
-    $scope.addToFavs = (userid, videoid, type, info, rating, dis, channel) => {
-        info.channel = channel;
-        mainService.addToFavs(userid, videoid, type, info, rating, dis)
+    $scope.addToFavs = (user_id, vid) => {
+        mainService.addToFavs(user_id, vid)
     };
 
     //change the raeting on the videos if the user is logged in
-    $scope.changeRating = (vid, type, index, str, info, userid) =>{
-        mainService.changeRating(vid, type, str, info, userid).then(response => {
+    $scope.changeRating = (vid, index, str, user_id) =>{
+        mainService.changeRating(vid, str, user_id).then(response => {
             if (str === 'plus') {
                 switch(response.data){
                     case 'added_l':

@@ -9,7 +9,7 @@ let session = require('express-session'),
     AuthOStrategy = require('passport-auth0'),
     config = require('./.config'),
     cors = require('cors');
-let massiveInstance = massive.connectSync({connectionString: 'postgres://awsuser:'+ config.dbpw +'@yoda235.c3zc3a3q4pvi.us-west-2.rds.amazonaws.com:5432/masteryoda'});
+let massiveInstance = massive.connectSync({connectionString: 'postgres://awsuser:'+ config.dbpw +'@yoda235.c3zc3a3q4pvi.us-west-2.rds.amazonaws.com:5432/Bobfett'});
 
 app.set('db', massiveInstance);
 let db = app.get('db');
@@ -30,9 +30,9 @@ app.post('/api/addToFavs', mainCtrl.addToFavs);
 
 app.get('/api/getDesc/:id', mainCtrl.getDesc);
 
-app.get('/api/getUserVids/:userid', mainCtrl.getUserVideos);
+app.get('/api/getUserVids/:user_id', mainCtrl.getUserVideos);
 
-app.delete('/api/removeFromFavs/:userid/:vidId', mainCtrl.removeFromFavs);
+app.delete('/api/removeFromFavs/:user_id/:video_id', mainCtrl.removeFromFavs);
 
 app.get('/api/getVideos/:search', mainCtrl.getVideos);
 
@@ -46,11 +46,11 @@ passport.use(new AuthOStrategy({
     },
     (accessToken, refreshToken, extraParams, profile, done) =>{
         db.run(`select * from users
-            where authid = $1`,[profile.id], (err, user)=>{
+            where auth_id = $1`,[profile.id], (err, user)=>{
             user = user[0];
             if(!user){
-                db.run(`insert into users (username, authid) 
-                values ($1, $2) returning userid, username, authid`,[profile.displayName, profile.id], (err, user)=>{
+                db.run(`insert into users (user_name, auth_id) 
+                values ($1, $2) returning user_id, user_name, auth_id`,[profile.displayName, profile.id], (err, user)=>{
                 console.log('user created', user);
                 return done(err, user[0])
             })

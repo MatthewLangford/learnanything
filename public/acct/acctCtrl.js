@@ -1,14 +1,12 @@
 angular.module('learnApp').controller('acctCtrl', function ($scope, mainService, $state) {
-    $scope.vidFilter = '';
     let getUser = ()=> {
         mainService.getUser().then(user => {
             if(user){
                 $scope.user = {
-                    userid: user.userid,
-                    username: user.username
+                    user_id: user.user_id,
+                    user_name: user.user_name
                 };
-                mainService.getUserVids(user.userid).then(response =>{
-                    console.log(response)
+                mainService.getUserVids(user.user_id).then(response =>{
                     $scope.userVids = response.data;
                 });
             }else {
@@ -17,33 +15,33 @@ angular.module('learnApp').controller('acctCtrl', function ($scope, mainService,
         });
     };
 
-    $scope.changeRating = (vid, type, index, str, info, userid) =>{
-        mainService.changeRating(vid, type, str, info, userid).then(response => {
+    $scope.changeRating = (vid, index, str,  user_id) =>{
+        mainService.changeRating(vid, str,  user_id).then(response => {
             if (str === 'plus') {
                 switch(response.data){
                     case 'added_l':
-                        $scope.userVidsFiltered[index].rating++;
+                        $scope.userVids[index].rating++;
                         break;
                     case 'alreadyLiked':
                         alert('you already liked that video');
                         break;
                     case 'disToLiked':
-                        $scope.userVidsFiltered[index].rating++;
-                        $scope.userVidsFiltered[index].dis--;
+                        $scope.userVids[index].rating++;
+                        $scope.userVids[index].dis--;
                         break;
                 }
             }
             if (str === 'dis') {
                 switch(response.data){
                     case 'added_d':
-                        $scope.userVidsFiltered[index].dis++;
+                        $scope.userVids[index].dis++;
                         break;
                     case 'alreadyDisliked':
                         alert('you already disliked that video');
                         break;
                     case 'likeToDis':
-                        $scope.userVidsFiltered[index].rating--;
-                        $scope.userVidsFiltered[index].dis++;
+                        $scope.userVids[index].rating--;
+                        $scope.userVids[index].dis++;
                         break;
                 }
             }

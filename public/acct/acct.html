@@ -1,29 +1,29 @@
 <main>
     <div class="infinite">
-        <h2 style="text-align: center">Welcome {{user.username}}</h2>
+        <h2 style="text-align: center">Welcome {{user.user_name}}</h2>
         <h2 class="top-welcome" ng-show="!user || user == 'NOT LOGGED IN'">Please <a href="/auth">Login</a> to see added videos and to rate videos</h2>
         <h2 style="text-align: center" ng-show="user && user != 'NOT LOGGED IN' && userVids.length == 0">You Have No videos in your favorites, click <a ui-sref="home" ng-click="getYoutubeData('learn anything')">here</a> to search for some to add.</h2>
-        <div class="videoWrapper ani-fade" ng-repeat="vid in userVidsFiltered = (userVids | orderBy: vidFilter)">
+        <div class="videoWrapper ani-fade" ng-repeat="vid in userVids">
             <div class="vid-div">
                 <div class="title">
-                    <h4>{{vid.info.title}}</h4>
+                    <h4>{{vid.title}}</h4>
                 </div>
                 <lwyt-embed
-                        youtubeurl="https://www.youtube.com/watch?v={{vid.videoid}}"
+                        youtubeurl="https://www.youtube.com/watch?v={{vid.video_id}}"
                         playerWidth="100%"
                         playerHeight="{{playerHeight}}">
                 </lwyt-embed>
                 <section class="vid-info">
-                    <h5 id="viewCount" ng-init="getDesc(vid); vid.isNavCollapsed = true"><span class="view-span">Views:</span> {{vid.desc.views}}</h5>
-                    <a class="channel" ui-sref="home" ng-click="getYoutubeData(vid.info.channel); goToTop()">Channel: {{vid.info.channel}}</a>
+                    <h5 id="viewCount" ng-init="vid.isNavCollapsed = true"><span class="view-span">Views:</span> {{vid.views}}</h5>
+                    <a class="channel" ui-sref="home" ng-click="getYoutubeData(vid.channel); goToTop()">Channel: {{vid.channel}}</a>
                     <h5>Likes: {{vid.rating}}</h5><span><h5>Dislikes: {{vid.dis}}</h5></span>
-                    <button id="like" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary pos like" ng-click="changeRating(vid, youtubeSearchText, $index, 'plus', vid.info, user.userid)"><i class="fa fa-thumbs-o-up"></i></button>
-                    <button id="dis" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary neg dis" ng-click="changeRating(vid, youtubeSearchText, $index, 'dis', vid.info, user.userid)"><i class="fa fa-thumbs-o-down"></i></button>
-                    <button id="remove" class="btn btn-primary neg" ng-click="removeFromFavs(user.userid, vid.videoid, $index)">Remove from favorites</button>
+                    <button id="like" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary pos like" ng-click="changeRating(vid, $index, 'plus', user.user_id)"><i class="fa fa-thumbs-o-up"></i></button>
+                    <button id="dis" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary neg dis" ng-click="changeRating(vid, $index, 'dis', user.user_id)"><i class="fa fa-thumbs-o-down"></i></button>
+                    <button id="remove" class="btn btn-primary neg" ng-click="removeFromFavs(user.user_id, vid.video_id, $index)">Remove from favorites</button>
                     <div class="desc" uib-collapse="vid.isNavCollapsed">
-                        <p class="desc">Description: {{vid.desc.snippet.description}}</p>
-                        <p class="desc">Tags: <a ui-sref="home" ng-repeat="t in vid.desc.snippet.tags" ng-click="getYoutubeData(t); goToTop()">{{t}}, </a></p>
-                        <h5>Date published: {{vid.info.date.slice(0,10)}}</h5>
+                        <p class="desc">Description: {{vid.description}}</p>
+                        <p class="desc">Tags: <a ui-sref="home" ng-repeat="t in vid.tags" ng-click="getYoutubeData(t); goToTop()">{{t}}, </a></p>
+                        <h5>Date published: {{vid.date.slice(0,10)}}</h5>
                     </div>
                 </section>
                 <button id="show"  class="btn btn-primary show-more" ng-click="vid.isNavCollapsed = !vid.isNavCollapsed;desc = !desc;scrollDesc(vid)">{{vid.isNavCollapsed ? "Show More": "Show Less"}}</button>

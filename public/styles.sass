@@ -1,0 +1,482 @@
+@import '../node_modules/breakpoint-sass/stylesheets/_breakpoint'
+$mobile: 480px
+$tablet: 786px
+$laptop: 1024px 2560px
+$tab-lap: 786px 2560px
+$pre-lap: 1200px
+$lp: 1024px
+$w100: 100%
+$w80: 80%
+$w90: 90%
+$button-shadows: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.2)
+$button-action: transform translateY(4px)
+$home-menu-font-size: 20px
+$main-font: 'Poppins', sans-serif
+$sub-font: 'Libre Baskerville', serif
+$primary-color: black
+$laptop-font: 22px
+$small-button-height: 30px
+$small-buttons-font: 16px
+$main-font-size: 18px
+$nav-font-color: #9d9d9d
+$neg: #e50000
+$button-hover-color: #0abf44
+$pos: #0aa440
+$main-background: white
+$nav-color: #222222
+
+header
+  font: $main-font
+
+body
+  font: $main-font
+  background-color: $main-background
+
+//nav css
+.navbar-header
+  background-color: $nav-color
+
+.navbar-default
+  border-color: transparent
+  background-color: transparent
+  z-index: 100
+.navbar
+  min-height: 0
+  margin-bottom: 0
+  border: none
+  position: fixed
+  top: 0
+  width: 100%
+
+.navbar-collapse
+  padding-left: 0
+  padding-right: 0
+.fa-caret-right
+  margin-left: 5px
+#myNavbar
+  font-family: $main-font
+  a
+    font-size: $main-font-size
+    text-decoration: none
+    color: $nav-font-color
+    padding-left: 11px
+  li
+    form
+      padding-left: 16px
+  @include breakpoint($tablet)
+    li
+      form
+        padding-left: 21px
+    a
+      font-size: $laptop-font
+      padding-left: 0
+    .glyphicon
+      margin-right: 3px
+      font-size: $main-font-size
+.search
+  padding-bottom: 20px
+  width: 300px
+  @include breakpoint($laptop)
+    width: 60%
+    padding-bottom: 0
+    margin-left: 1%
+  @include breakpoint($tablet)
+.menu-item
+  //display: list-item
+  @include breakpoint($tab-lap)
+    display: none
+.aboutTop
+  display: block
+  margin-left: 10px
+  margin-bottom: 2px
+  @include breakpoint($tablet)
+    display: inline-block
+    margin-left: 0
+    margin-bottom: 0
+.side-nav-search-small
+  display: block
+  @include breakpoint($tablet)
+    display: none
+.side-nav-search-big
+  display: none
+  @include breakpoint($tablet)
+    display: block
+#form-holder
+  width: 100%
+  display: none
+  @include breakpoint($tablet)
+    display: inline-block
+    width: 40%
+  @include breakpoint($pre-lap)
+    display: inline-block
+    width: 50%
+
+.form-control
+  display: inline-block
+  width: 225px
+  font-size: $main-font-size
+  transition: all .5s ease
+
+.form-control:focus
+  @include breakpoint($lp)
+    width: 300px
+  @include breakpoint($pre-lap)
+    width: 400px
+
+#search-button
+  height: 34px
+  margin-left: 4px
+  margin-bottom: 2px
+  background-color: $pos
+  border: $pos 1px solid
+  width: 75px
+  @include breakpoint($laptop)
+    width: 100px
+
+.topForm
+  display: inline-block
+  width: 100%
+  padding: 3px 2px 0 0
+
+.welcome
+  text-align: center
+  @include breakpoint($laptop)
+  width: 80%
+.btn-group
+  width: 100%
+
+.btn-group:hover>.dropdown-menu
+  @include breakpoint($laptop)
+    display: block
+
+.dropdown-menu
+  display: none
+  background-color: $nav-color
+  left: 189px
+  top: 0
+  margin: 0
+#single-button
+  @include breakpoint($laptop)
+  padding-left: 7px
+  cursor: pointer
+
+#list-item
+  @include breakpoint($laptop)
+  background-color: $nav-color
+
+.home-menu
+  width: 70%
+  display: inline-block
+  margin-top: 12px
+  margin-left: 12px
+  padding-left: 0
+  #login
+    display: inline-block
+  a
+    font-size: $home-menu-font-size
+    text-decoration: none
+    color: $nav-font-color
+  @include breakpoint ($tablet)
+    display: none
+    #login
+      display: none
+.nav
+  background-color: #222
+  list-style-type: none
+  margin: 0
+  padding-top: 4px
+  padding-left: 1px
+  padding-bottom: 2px
+
+
+.navbar-inverse
+  width: 100%
+  background-color: #222222
+  margin: -1px 0 0 0
+  list-style-type: none
+  padding-left: 0
+  #login2
+    display: none
+  a
+    font-size: $main-font-size
+    text-decoration: none
+  @include breakpoint($tablet)
+    width: 100%
+    a
+      font-size: $home-menu-font-size
+      padding-left: 3px
+      padding-right: 3px
+    li
+      #login2
+        display: inline-block
+        padding: 21px 5px 0 10px
+  @include breakpoint($laptop)
+    a
+      padding: 0 0 0 5px
+      span
+        margin-right: 10px
+
+.navbar-toggle
+  li
+    display: list-item
+  .icon-bar
+    background-color: #222222
+    color: $nav-font-color
+  @include breakpoint($laptop)
+    display: none
+.topInfoHome
+  text-align: center
+.topInfo
+  margin-left: auto
+  margin-right: auto
+  width: 245px
+
+.glyphicon
+  margin-right: 5px
+
+main
+  margin-top: 75px
+  @include breakpoint($tablet)
+
+.top-welcome
+  text-align: center
+  font-family: $main-font
+  margin-top: 18px
+  @include breakpoint($laptop)
+    margin-bottom: 35px
+    width: 75%
+    margin-left: 21%
+    margin-right: auto
+
+.smallUl
+  padding-left: 0
+  padding-top: 0
+  margin-left: -10px
+  #logout
+    padding-left: 20px
+    @include breakpoint($tablet)
+      padding-left: 0
+      margin-left: 2px
+  @include breakpoint($laptop)
+    #logout
+      padding-top: 5px
+      padding-left: 3px
+      padding-right: 2px
+  @include breakpoint($tablet)
+    a
+      padding-right: 5px
+    padding-top: 4px
+    .log
+      padding-top: 4px
+    #login2
+      display: inline-block
+      padding-left: 5px
+      margin-left: -3px
+
+.about
+  margin-left: -3px
+  padding-top: 9px
+  padding-bottom: 0
+
+
+.side-nav
+  display: none
+  @include breakpoint($tab-lap)
+    display: block
+    border-top: 1px solid $nav-color
+    position: fixed
+    top: 38px
+    float: left
+    width: 200px
+    height: 100%
+    background-color: $nav-color
+    z-index: 100
+    .smallUl
+      display: none
+    ul
+      li
+        width: 100%
+        a
+          float: none
+          font-size: 22px
+          color: $nav-font-color
+          padding-left: 0
+
+#search
+  padding-left: 5px
+  display: block
+  width: 100%
+  @include breakpoint($tablet)
+    display: none
+
+.infinite
+  width: 100%
+  @include breakpoint($tablet)
+    width: 81%
+    margin-left: 215px
+  @include breakpoint($pre-lap)
+    width: 88%
+    margin-left: 225px
+
+
+.videoWrapper
+  margin-top: 40px
+
+
+.vid-div
+  padding: 10px 0 10px 0
+  a
+    cursor: pointer
+    text-decoration: none
+    font-family: $main-font
+  @include breakpoint($tablet)
+    width: 99%
+    float: left
+    border: 1px solid #222
+    margin-right: 2%
+    margin-bottom: 2%
+    line-height: 0
+    @include breakpoint($pre-lap)
+      width: 48%
+
+.vid-info
+  width: 95%
+  margin: 15px auto 0 auto
+  transition: all 1s ease
+
+.desc
+  font-size: 16px
+  font-family: $sub-font
+  overflow-wrap: break-word
+  clear: right
+  p
+    line-height: 1.42857143
+.channel
+  font-size: 15px
+  float: right
+  width: 45%
+  margin-right: -3px
+  margin-top: -32px
+  text-align: center
+  overflow-wrap: break-word
+  @include breakpoint($mobile)
+    margin-top: -20px
+    width: auto
+#viewCount
+  margin-top: -1px
+  @include breakpoint($mobile)
+    margin-top: -5px
+
+.like
+  float: right
+#add
+  margin-bottom: 10px
+  @include breakpoint($tablet)
+    margin-bottom: 20px
+#remove
+  margin-bottom: 20px
+.like:hover,.show-more:hover,#add:hover,.backToTop:hover,#search-button:hover
+  background-color: $button-hover-color
+  border: $button-hover-color 1px solid
+
+#like:focus,#add:focus,.backToTop:focus,#show:focus,#search-button:focus
+  background-color: $pos
+
+#like:active,#add:active,.backToTop:active,#show:active
+  background-color: $button-hover-color
+  transform: translateY(4px)
+  box-shadow: $button-shadows
+
+.dis
+  float: right
+  margin-right: 5px
+  background-color: $neg
+  box-shadow: $button-shadows
+
+.dis:hover,#remove:hover
+  background-color: #ff0000
+  box-shadow: $button-shadows
+
+#dis:focus,#remove:focus
+  background-color: $neg
+
+#dis:active,#remove:active
+  background-color: #ee0000
+  transform: translateY(4px)
+  box-shadow: $button-shadows
+
+.show-more
+  width: $w100
+  background-color: $pos
+  font-size: $small-buttons-font
+  height: $small-button-height
+  line-height: 1px
+  border: $pos 1px solid
+  margin-top: 15px
+  margin-bottom: 15px
+  border-radius: 25px
+  box-shadow: $button-shadows
+
+  @include breakpoint($laptop)
+    width: 98%
+    margin: 10px 1% 0 1%
+.backToTop
+  height: 35px
+  background-color: $pos
+  border: 1px solid #0a8431
+  width: 100%
+  display: none
+  z-index: 1000000
+  position: fixed
+  bottom: 0
+  font-size: $main-font-size
+  @include breakpoint($tab-lap)
+    width: 12%
+    left: 49%
+    height: 30px
+    border-radius: 25px
+    line-height: 1px
+.pos
+  background-color: $pos
+  box-shadow: $button-shadows
+
+.neg
+  background-color: $neg
+  box-shadow: $button-shadows
+
+.neg:hover
+  background-color: #ff0000
+  box-shadow: $button-shadows
+
+.vid-div
+  h4
+    font-family: $main-font
+    text-align: center
+    font-size: $main-font-size
+    color: $primary-color
+  .title
+    @include breakpoint($tablet)
+      height: 55px
+
+  h5
+    font-family: $main-font
+    text-align: left
+    font-size: $main-font-size
+    color: $primary-color
+    margin-top: 17px
+
+.ani-fade
+  transition: all  .65s  ease
+  transform: translate3d(0,0,0)
+  &.ng-enter,.ng-move
+    opacity: 0
+    transform: translate3d(0,0,0)
+  &.ng-enter.ng-enter-active,.ng-move.ng-move-active
+    opacity: 1
+    transform: translate3d(0,0,0)
+  &.ng-leave
+    opacity: 1
+    transform: translate3d(0,0,0)
+  &.ng-leave.ng-leave-active
+    opacity: 0
+    transform: translate3d(0,0,0)

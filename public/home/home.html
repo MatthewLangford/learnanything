@@ -1,0 +1,35 @@
+<main>
+    <div class="infinite" infinite-scroll='scroller(youtubeSearchText, nextPageToken)' infinite-scroll-distance="1.5" infinite-scroll-disabled="stopScroll" infinite-scroll-immediate-check="false">
+        <div class="topInfoHome">
+            <h2>Welcome to Learn Anything</h2>
+            <h3>Please select a category for the videos you're looking for.</h3>
+        </div>
+        <div class="videoWrapper ani-fade" ng-repeat="vid in youtubeFiltered = (youtubeData | orderBy: vidFilter)">
+            <div class="vid-div">
+                <div class="title">
+                    <h4>{{vid.snippet.title}}</h4>
+                </div>
+                <lwyt-embed
+                        youtubeurl="https://www.youtube.com/watch?v={{vid.videoid}}"
+                        playerWidth="100%"
+                        playerHeight="{{playerHeight}}">
+                </lwyt-embed>
+                <section class="vid-info">
+                    <h5 id="viewCount" ng-init="getDesc(vid); vid.isNavCollapsed = true"><span class="view-span">Views:</span> {{vid.desc.views}}</h5>
+                    <a class="channel" ng-click="getYoutubeData(vid.snippet.channel);goToTopFast()">Channel: {{vid.snippet.channel}}</a>
+                    <h5>Likes: {{vid.rating}}</h5><h5>Dislikes: {{vid.dis}}</h5>
+                    <button id="add" class="btn btn-primary pos" ng-show="user && user !== 'NOT LOGGED IN'" ng-click="addToFavs(user.userid, vid.videoid, youtubeSearchText, vid.snippet, vid.rating, vid.dis)">Add to favorites</button>
+                    <button id="like" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary pos like" ng-click="changeRating(vid, youtubeSearchText, $index, 'plus', vid.snippet, user.userid)"><i class="fa fa-thumbs-o-up"></i></button>
+                    <button id="dis" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary neg dis" ng-click="changeRating(vid, youtubeSearchText, $index, 'dis', vid.snippet, user.userid)"><i class="fa fa-thumbs-o-down"></i></button>
+                    <div class="desc" uib-collapse="vid.isNavCollapsed">
+                        <p class="desc">Description: {{vid.desc.snippet.description}}</p>
+                        <p class="desc">Tags: <a ng-repeat="t in vid.desc.snippet.tags" ng-click="getYoutubeData(t);goToTopFast()">{{t}}, </a></p>
+                        <h5>Date published: {{vid.snippet.date.slice(0,10)}}</h5>
+                    </div>
+                </section>
+                <button id="show"  class="btn btn-primary show-more" ng-click="vid.isNavCollapsed = !vid.isNavCollapsed;scrollDesc(vid)">{{vid.isNavCollapsed ? "Show More": "Show Less"}}</button>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</main>

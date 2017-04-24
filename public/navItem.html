@@ -1,0 +1,8 @@
+<div class="nav navbar-nav btn-group" uib-dropdown auto-close>
+    <a id="single-button" ui-sref="home" class="side-nav-search-big" ng-click="getYoutubeData(name)"> {{name}}<i class="fa fa-caret-right"></i></a>
+    <a id="single-button" ui-sref="home" class="side-nav-search-small" uib-dropdown-toggle> {{name}}<span class="caret"></span></a>
+    <ul id="direct" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+        <li role="menuitem" ng-repeat="item in list"><a ui-sref="home" ng-click="getYoutubeData(item);input = item">{{item}}</a>
+        </li>
+    </ul>
+</div><br/>

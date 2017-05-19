@@ -16,18 +16,37 @@
                 </lwyt-embed>
                 <section class="vid-info">
                     <h5 id="viewCount" ng-init="vid.isNavCollapsed = true"><span class="view-span">Views:</span> {{vid.views}}</h5>
-                    <a class="channel" ui-sref="home" ng-click="getYoutubeData(vid.channel); goToTop()">Channel: {{vid.channel}}</a>
-                    <h5>Likes: {{vid.rating}}</h5><h5>Dislikes: {{vid.dis}}</h5>
-                    <button id="add" class="btn btn-primary pos" ng-show="user && user !== 'NOT LOGGED IN'" ng-click="addToFavs(user.user_id, vid)">Add to favorites</button>
-                    <button id="like" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary pos like" ng-click="changeRating(vid,  $index, 'plus', user.user_id)"><i class="fa fa-thumbs-o-up"></i></button>
-                    <button id="dis" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary neg dis" ng-click="changeRating(vid, $index, 'dis', user.user_id)"><i class="fa fa-thumbs-o-down"></i></button>
+                    <a class="channel" ui-sref="home" ng-click="getYoutubeData(vid.channel); goToTop()">
+                        Channel: {{vid.channel}}
+                    </a>
+                    <h5>
+                        Likes: {{vid.rating}}
+                    </h5>
+                    <h5>
+                        Dislikes: {{vid.dis}}
+                    </h5>
+                    <button id="add" class="btn btn-primary pos" ng-show="user && user !== 'NOT LOGGED IN'" ng-click="addToFavs(user.user_id, vid)">
+                        Add to favorites
+                    </button>
+                    <button id="like" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary pos like" ng-click="changeRating(vid,  $index, 'plus', user.user_id)">
+                        <i class="fa fa-thumbs-o-up"></i>
+                    </button>
+                    <button id="dis" ng-show="user && user != 'NOT LOGGED IN'" class="btn btn-primary neg dis" ng-click="changeRating(vid, $index, 'dis', user.user_id)">
+                        <i class="fa fa-thumbs-o-down"></i>
+                    </button>
                     <div class="desc" uib-collapse="vid.isNavCollapsed">
-                        <p class="desc">Description: {{vid.description}}</p>
+                        <p class="desc">
+                            Description: {{vid.description}}
+                        </p>
                         <p class="desc">Tags: <a ng-repeat="t in vid.tags" ng-click="getYoutubeData(t); goToTop()">{{t}}, </a></p>
-                        <h5>Date published: {{vid.date.slice(0,10)}}</h5>
+                        <h5>
+                            Date published: {{vid.date.slice(0,10)}}
+                        </h5>
                     </div>
                 </section>
-                <button id="show"  class="btn btn-primary show-more" ng-click="vid.isNavCollapsed = !vid.isNavCollapsed;scrollDesc(vid)">{{vid.isNavCollapsed ? "Show More": "Show Less"}}</button>
+                <button id="show"  class="btn btn-primary show-more" ng-click="vid.isNavCollapsed = !vid.isNavCollapsed;scrollDesc(vid)">
+                    {{vid.isNavCollapsed ? "Show More": "Show Less"}}
+                </button>
             </div>
         </div>
     </div>

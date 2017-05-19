@@ -2,7 +2,7 @@
     <div class="infinite">
         <h2 style="text-align: center">Welcome {{user.user_name}}</h2>
         <h2 class="top-welcome" ng-show="!user || user == 'NOT LOGGED IN'">Please <a href="/auth">Login</a> to see added videos and to rate videos</h2>
-        <h2 style="text-align: center" ng-show="user && user != 'NOT LOGGED IN' && userVids.length == 0">You Have No videos in your favorites, click <a ui-sref="home" ng-click="getYoutubeData('learn anything')">here</a> to search for some to add.</h2>
+        <h3 style="text-align: center" ng-show="user && user != 'NOT LOGGED IN' && userVids.length == 0">You have no videos in your favorites, click <a ui-sref="home" ng-click="getYoutubeData('learn anything')">here</a> to search for some to add.</h3>
         <div class="videoWrapper ani-fade" ng-repeat="vid in userVids">
             <div class="vid-div">
                 <div class="title">

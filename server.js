@@ -67,7 +67,7 @@ passport.serializeUser((userA, done) =>{
 });
 
 passport.deserializeUser((userB, done) =>{
-    var userC = userB;
+    let userC = userB;
     done(null, userC);
 });
 
